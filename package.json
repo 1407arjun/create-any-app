@@ -1,0 +1,33 @@
+{
+  "name": "create-any-app",
+  "version": "1.0.0",
+  "description": "Command line interface for rapid creation, configuration and development of JavaScript apps.",
+  "main": "bin/caa.js",
+  "bin": {
+    "create-any-app": "bin/caa.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1407arjun/create-any-app.git"
+  },
+  "keywords": [
+    "create-any-app",
+    "javascript",
+    "typescript",
+    "express",
+    "react",
+    "node",
+    "template",
+    "boilerplate",
+    "cli"
+  ],
+  "author": "Arjun Sivaraman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/1407arjun/create-any-app/issues"
+  },
+  "homepage": "https://github.com/1407arjun/create-any-app#readme"
+}

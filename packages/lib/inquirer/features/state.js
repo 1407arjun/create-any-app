@@ -4,7 +4,7 @@ export default function state() {
     const questions = [
         {
             type: 'list',
-            name: 'stateLib',
+            name: 'state',
             message: 'Pick a state-management library:',
             choices: [
                 {

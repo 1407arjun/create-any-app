@@ -4,7 +4,7 @@ export default function babel() {
     const questions = [
         {
             type: 'confirm',
-            name: 'babelWithTs',
+            name: 'babel',
             message:
                 'Use babel alongside TypeScript (required for modern mode, auto-detected polyfills, transpiling JSX)?',
             default: true

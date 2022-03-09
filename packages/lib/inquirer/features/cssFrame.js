@@ -11,7 +11,8 @@ export default function cssFrame() {
                 { name: 'Bootstrap', value: 'bs' },
                 { name: 'Chakra UI', value: 'ckui' },
                 { name: 'Material UI', value: 'mui' },
-                { name: 'Ant Design', value: 'ant' }
+                { name: 'Ant Design', value: 'ant' },
+                { name: 'None', value: 'none' }
             ],
             default: 0
         }

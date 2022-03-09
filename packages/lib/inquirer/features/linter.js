@@ -4,7 +4,7 @@ export default function linter() {
     const questions = [
         {
             type: 'list',
-            name: 'linterConfig',
+            name: 'linter',
             message: 'Pick a linter/formatter config:',
             choices: [
                 {

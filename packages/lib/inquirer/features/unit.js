@@ -4,7 +4,7 @@ export default function unit() {
     const questions = [
         {
             type: 'list',
-            name: 'unitLib',
+            name: 'unit',
             message: 'Pick unit testing solution:',
             choices: [
                 { name: 'Jest', value: 'jest' },

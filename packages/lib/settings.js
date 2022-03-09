@@ -1,3 +1,4 @@
+import main from './inquirer/main.js'
 import babel from './inquirer/features/babel.js'
 import state from './inquirer/features/state.js'
 import cssProc from './inquirer/features/cssProc.js'
@@ -8,53 +9,93 @@ import config from './inquirer/features/config.js'
 import version from './inquirer/features/version.js'
 import inquirer from 'inquirer'
 
-export default async function getSettings(options) {
-    const settings = {}
-
-    settings.version = await version()
-    options.features.forEach(async (opt) => {
-        switch (opt) {
-            case 'babel':
-                settings.babel = true
-                break
-            case 'ts':
-                settings.ts.use = true
-                if (settings.babel) settings.ts.babel = await babel()
-                break
-            case 'router':
-                settings.router = true
-                break
-            case 'state':
-                settings.state = await state()
-                break
-            case 'cssProc':
-                settings.cssProc = await cssProc()
-                break
-            case 'cssFrame':
-                settings.cssFrame = await cssFrame()
-                break
-            case 'linter':
-                settings.linter = await linter()
-                break
-            case 'unit':
-                settings.unit = await unit()
-                break
-            default:
-                break
-        }
-    })
-
-    settings.config = await config()
+export default async function getSettings(name) {
+    let settings = {}
 
     const questions = [
         {
-            type: 'confirm',
+            type: 'list',
             name: 'preset',
-            message: 'Save this as a preset for future projects?',
-            default: true
+            message: 'Please pick a preset:',
+            choices: [
+                {
+                    name: 'Some preset',
+                    value: 'preset name'
+                },
+                {
+                    name: 'Manually select features',
+                    value: 'manual'
+                }
+            ],
+            default: 0
         }
     ]
-    settings.save = await inquirer.prompt(questions)
+
+    const preset = (await inquirer.prompt(questions)).preset
+
+    if (preset === 'manual') {
+        settings = { ...settings, version: (await version()).version }
+        const options = await main(name)
+        for (const opt of options.features) {
+            switch (opt) {
+                case 'babel':
+                    settings = { ...settings, babel: true }
+                    break
+                case 'ts':
+                    settings = {
+                        ...settings,
+                        ts: {
+                            use: true,
+                            babel: (await babel()).babel
+                        }
+                    }
+                    break
+                case 'router':
+                    settings = { ...settings, router: true }
+                    break
+                case 'state':
+                    settings = { ...settings, state: (await state()).state }
+                    break
+                case 'cssProc':
+                    settings = {
+                        ...settings,
+                        cssProc: (await cssProc()).preProcessor
+                    }
+                    break
+                case 'cssFrame':
+                    settings = {
+                        ...settings,
+                        cssFrame: (await cssFrame()).framework
+                    }
+                    break
+                case 'linter':
+                    settings = { ...settings, linter: (await linter()).linter }
+                    break
+                case 'unit':
+                    settings = { ...settings, unit: (await unit()).unit }
+                    break
+                default:
+                    break
+            }
+        }
+
+        settings = { ...settings, config: (await config()).config }
+
+        const questions = [
+            {
+                type: 'confirm',
+                name: 'preset',
+                message: 'Save this as a preset for future projects?',
+                default: false
+            }
+        ]
+        settings = {
+            ...settings,
+            preset: (await inquirer.prompt(questions)).preset
+        }
+    }
+    // Get preset settings
+    else settings = { preset }
 
     return settings
 }

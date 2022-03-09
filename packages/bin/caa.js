@@ -1,17 +1,7 @@
 #!/usr/bin/env node
 
-// import clear from 'clear'
-// import chalk from 'chalk'
-// import figlet from 'figlet'
 import { program } from 'commander'
-
-// clear()
-
-// console.log(
-//     chalk.yellow(
-//         figlet.textSync('create-any-app', { horizontalLayout: 'full' })
-//     )
-// )
+import cli from '../lib/cli.js'
 
 program
     .name('create-any-app')
@@ -23,8 +13,6 @@ program
 program
     .command('next <project-name>')
     .description('Create a new Next.js project')
-    .action((name) => {
-        console.log(name)
-    })
+    .action(cli)
 
 program.parse()

@@ -5,7 +5,8 @@
   "type": "module",
   "main": "bin/caa.js",
   "bin": {
-    "create-any-app": "bin/caa.js"
+    "create-any-app": "bin/caa.js",
+    "caa": "bin/caa.js"
   },
   "scripts": {
     "lint": "eslint",

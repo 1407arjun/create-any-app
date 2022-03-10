@@ -37,7 +37,10 @@ export default async function getSettings(name, options) {
         const preset = (await inquirer.prompt(questions)).preset
 
         if (preset === 'manual') {
-            settings = { ...settings, version: (await version()).version }
+            settings = {
+                ...settings,
+                version: Number((await version()).version)
+            }
             const options = await main(name)
             for (const opt of options.features) {
                 switch (opt) {

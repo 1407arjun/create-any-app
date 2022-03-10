@@ -1,7 +1,6 @@
 import fs from 'fs'
 import inquirer from 'inquirer'
 import dir from './inquirer/dir.js'
-import main from './inquirer/main.js'
 import getSettings from './settings.js'
 
 export default async function cli(name, options) {

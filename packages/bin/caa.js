@@ -11,13 +11,24 @@ program
     .version('0.1.0', '-v, ,--vers, --version', 'print create-any-app version')
 
 program
-    .command('next')
-    .description('Create a new Next.js project')
+    .command('preset')
+    .description('create a new project from a preset configuration')
+    .argument('<preset-name>', 'name of the preset')
     .argument('<project-name>', 'name of the project')
-    .option('-ts, --typescript', 'Creates a new Next.js project in TypeScript')
     .option(
         '--no-git',
-        'Creates a new project without initializing a Git repository'
+        'create a new project without initializing a Git repository'
+    )
+    .action(preset)
+
+program
+    .command('next')
+    .description('create a new Next.js project')
+    .argument('<project-name>', 'name of the project')
+    .option('-ts, --typescript', 'create a new Next.js project in TypeScript')
+    .option(
+        '--no-git',
+        'create a new project without initializing a Git repository'
     )
     .action(cli)
 

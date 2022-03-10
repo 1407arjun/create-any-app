@@ -1,10 +1,10 @@
 import inquirer from 'inquirer'
 
-export default function config() {
+export default function configFiles() {
     const questions = [
         {
             type: 'list',
-            name: 'config',
+            name: 'configFiles',
             message:
                 'Where do you prefer placing config for Babel, ESLint, etc.?',
             choices: [

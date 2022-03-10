@@ -5,9 +5,11 @@ import cssProc from './inquirer/features/cssProc.js'
 import cssFrame from './inquirer/features/cssFrame.js'
 import linter from './inquirer/features/linter.js'
 import unit from './inquirer/features/unit.js'
-import config from './inquirer/features/config.js'
+import configFiles from './inquirer/features/configFiles.js'
 import version from './inquirer/features/version.js'
+import terms from './terms.js'
 import inquirer from 'inquirer'
+import config from './conf.js'
 
 export default async function getSettings(name, options) {
     let settings = {}
@@ -21,10 +23,19 @@ export default async function getSettings(name, options) {
                 name: 'preset',
                 message: 'Please pick a preset:',
                 choices: [
-                    {
-                        name: 'Some preset',
-                        value: 'preset name'
-                    },
+                    ...config.get('presets').map((c) => {
+                        const s = []
+                        if (c.babel) s.push('Babel')
+                        if (c.ts) s.push('TypeScript')
+                        if (c.router) s.push('Router')
+                        if (c.state) s.push(terms[c.state])
+                        if (c.cssProc) s.push(terms[c.cssProc])
+                        if (c.cssFrame) s.push(terms[c.cssFrame])
+                        if (c.linter) s.push(terms[c.linter])
+                        if (c.unit) s.push(terms[c.unit])
+
+                        return c.name + ' [' + s.join(', ') + ']'
+                    }),
                     {
                         name: 'Manually select features',
                         value: 'manual'
@@ -88,7 +99,10 @@ export default async function getSettings(name, options) {
                 }
             }
 
-            settings = { ...settings, config: (await config()).config }
+            settings = {
+                ...settings,
+                config: (await configFiles()).configFiles
+            }
 
             const questions = [
                 {
@@ -98,14 +112,86 @@ export default async function getSettings(name, options) {
                     default: false
                 }
             ]
-            settings = {
-                ...settings,
-                preset: (await inquirer.prompt(questions)).preset
+
+            const res = (await inquirer.prompt(questions)).preset
+
+            if (res) {
+                const presetName = (
+                    await inquirer.prompt([
+                        {
+                            type: 'input',
+                            name: 'name',
+                            message: 'Save preset as:'
+                        }
+                    ])
+                ).name.trim()
+
+                if (presetName !== '') {
+                    settings = { ...settings, name: presetName }
+
+                    let flag = 0
+                    for (const c of config.get('presets')) {
+                        if (
+                            c.name.toLowerCase() === settings.name.toLowerCase()
+                        ) {
+                            flag = 1
+                            break
+                        }
+                    }
+                    if (flag === 1) {
+                        const r = (
+                            await inquirer.prompt([
+                                {
+                                    type: 'list',
+                                    name: 'preset',
+                                    message: `Preset ${settings.name} already exists. Pick an option:`,
+                                    choices: [
+                                        {
+                                            name: 'Overwrite',
+                                            value: 'overwrite'
+                                        },
+                                        { name: 'Cancel', value: 'cancel' }
+                                    ],
+                                    default: 0
+                                }
+                            ])
+                        ).preset
+
+                        if (r === 'overwrite') {
+                            const preset = config.get('presets')
+                            for (var i = 0; i < preset.length; i++) {
+                                if (
+                                    preset[i].name.toLowerCase() ===
+                                    settings.name.toLowerCase()
+                                ) {
+                                    preset[i] = settings
+                                    break
+                                }
+                            }
+                            config.set('presets', preset)
+                        }
+                    } else
+                        config.set('presets', [
+                            ...config.get('presets'),
+                            settings
+                        ])
+                }
+            }
+        } else {
+            for (const c of config.get('presets')) {
+                if (
+                    c.name.toLowerCase() ===
+                    preset.toLowerCase().split(' ')[0].trim()
+                ) {
+                    settings = c
+                    break
+                }
             }
         }
-        // Get preset settings
-        else settings = { preset }
     }
+
+    if (!options.git) settings = { ...settings, git: false }
+    else settings = { ...settings, git: true }
 
     return settings
 }

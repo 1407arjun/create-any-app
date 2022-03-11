@@ -1,4 +1,5 @@
 import inquirer from 'inquirer'
+import states from '../../../data/states.js'
 
 export default function state() {
     const questions = [
@@ -6,16 +7,7 @@ export default function state() {
             type: 'list',
             name: 'state',
             message: 'Pick a state-management library:',
-            choices: [
-                {
-                    name: 'React-Redux',
-                    value: 'reactRedux'
-                },
-                {
-                    name: 'Redux',
-                    value: 'redux'
-                }
-            ],
+            choices: states.next,
             default: 0
         }
     ]

@@ -1,4 +1,5 @@
 import inquirer from 'inquirer'
+import units from '../../../data/units.js'
 
 export default function unit() {
     const questions = [
@@ -6,10 +7,7 @@ export default function unit() {
             type: 'list',
             name: 'unit',
             message: 'Pick unit testing solution:',
-            choices: [
-                { name: 'Jest', value: 'jest' },
-                { name: 'Mocha + Chai', value: 'mocha' }
-            ],
+            choices: units.unit,
             default: 0
         }
     ]

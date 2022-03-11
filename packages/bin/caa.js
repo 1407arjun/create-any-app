@@ -31,6 +31,8 @@ program
         '--no-git',
         'create a new project without initializing a Git repository'
     )
-    .action(cli)
+    .action((name, options) => {
+        cli(name, options, 'next')
+    })
 
 program.parse()

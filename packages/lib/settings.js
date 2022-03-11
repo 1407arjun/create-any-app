@@ -7,15 +7,16 @@ import linter from './inquirer/features/linter.js'
 import unit from './inquirer/features/unit.js'
 import configFiles from './inquirer/features/configFiles.js'
 import version from './inquirer/features/version.js'
-import terms from './terms.js'
+import terms from '../data/terms.js'
 import inquirer from 'inquirer'
 import config from './conf.js'
 
-export default async function getSettings(name, options) {
+export default async function getSettings(name, options, type) {
     let settings = {}
+    settings = { ...settings, type }
 
     if (options.typescript) {
-        settings = { ts: { use: true } }
+        settings = { ...settings, ts: { use: true } }
     } else {
         const questions = [
             {

@@ -1,4 +1,5 @@
 import inquirer from 'inquirer'
+import cssFrames from '../../../data/cssFrames.js'
 
 export default function cssFrame() {
     const questions = [
@@ -6,14 +7,7 @@ export default function cssFrame() {
             type: 'list',
             name: 'framework',
             message: 'Pick a CSS framework:',
-            choices: [
-                { name: 'TailwindCSS', value: 'tw' },
-                { name: 'Bootstrap', value: 'bs' },
-                { name: 'Chakra UI', value: 'ckui' },
-                { name: 'Material UI', value: 'mui' },
-                { name: 'Ant Design', value: 'ant' },
-                { name: 'None', value: 'none' }
-            ],
+            choices: cssFrames.frameworks,
             default: 0
         }
     ]

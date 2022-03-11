@@ -1,4 +1,5 @@
 import inquirer from 'inquirer'
+import versions from '../../../data/versions.js'
 
 export default function version() {
     const questions = [
@@ -7,10 +8,7 @@ export default function version() {
             name: 'version',
             message:
                 'Choose a version of Next.js that you want to start the project with:',
-            choices: [
-                { name: '12.x', value: '12' },
-                { name: '11.x', value: '11' }
-            ],
+            choices: versions.next,
             default: 0
         }
     ]

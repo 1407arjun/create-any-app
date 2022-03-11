@@ -2,6 +2,7 @@ import config from './conf.js'
 import fs from 'fs'
 import dir from './inquirer/dir.js'
 import clear from 'clear'
+import main from './fs/main.js'
 
 export default async function preset(preset, name, options) {
     console.log('create-any-app v0.1.0')
@@ -35,5 +36,5 @@ export default async function preset(preset, name, options) {
         process.exit(0)
     }
 
-    console.log(settings)
+    main(name, settings)
 }

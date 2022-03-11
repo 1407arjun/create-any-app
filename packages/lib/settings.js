@@ -1,4 +1,4 @@
-import main from './inquirer/main.js'
+import features from './inquirer/features.js'
 import babel from './inquirer/features/babel.js'
 import state from './inquirer/features/state.js'
 import cssProc from './inquirer/features/cssProc.js'
@@ -49,11 +49,11 @@ export default async function getSettings(name, options, type) {
         const preset = (await inquirer.prompt(questions)).preset
 
         if (preset === 'manual') {
-            settings = {
+            /*settings = {
                 ...settings,
                 version: Number((await version()).version)
-            }
-            const options = await main(name)
+            }*/
+            const options = await features()
             for (const opt of options.features) {
                 switch (opt) {
                     case 'babel':

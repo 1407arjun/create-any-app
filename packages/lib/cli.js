@@ -3,8 +3,9 @@ import path from 'path'
 import clear from 'clear'
 import dir from './inquirer/dir.js'
 import getSettings from './settings.js'
+import main from './fs/main.js'
 
-export default async function next(name, options) {
+export default async function cli(name, options, type) {
     console.log('create-any-app v0.1.0')
 
     let settings = {}
@@ -17,12 +18,9 @@ export default async function next(name, options) {
             )
             fs.rmSync(name, { recursive: true })
             clear()
-            settings = await getSettings(name, options)
+            settings = await getSettings(name, options, type)
         } else process.exit(0)
-    } else settings = await getSettings(name, options)
+    } else settings = await getSettings(name, options, type)
 
-    if (settings.name) {
-    }
-
-    console.log(settings)
+    main(name, settings)
 }

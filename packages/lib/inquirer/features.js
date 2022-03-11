@@ -1,7 +1,7 @@
 import inquirer from 'inquirer'
 import clear from 'clear'
 
-export default function main(name) {
+export default function features() {
     clear()
     const questions = [
         {

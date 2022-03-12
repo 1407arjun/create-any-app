@@ -11,7 +11,7 @@ import terms from '../data/terms.js'
 import inquirer from 'inquirer'
 import config from './conf.js'
 
-export default async function getSettings(name, options, type) {
+export default async function getSettings(options, type) {
     let settings = {}
     settings = { ...settings, type }
 

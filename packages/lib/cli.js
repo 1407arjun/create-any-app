@@ -18,9 +18,9 @@ export default async function cli(name, options, type) {
             )
             fs.rmSync(name, { recursive: true })
             clear()
-            settings = await getSettings(name, options, type)
+            settings = await getSettings(options, type)
         } else process.exit(0)
-    } else settings = await getSettings(name, options, type)
+    } else settings = await getSettings(options, type)
 
     main(name, settings)
 }

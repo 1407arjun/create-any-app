@@ -29,10 +29,23 @@ program
     .option('-ts, --typescript', 'create a new Next.js project in TypeScript')
     .option(
         '--no-git',
-        'create a new project without initializing a Git repository'
+        'create a new project without initializing a git repository'
     )
     .action((name, options) => {
         cli(name, options, 'next')
+    })
+
+program
+    .command('gatsby')
+    .description('Create a new Gatsby.js project')
+    .argument('<project-name>', 'name of the project')
+    .option('-ts, --typescript', 'create a new Gatsby.js project in TypeScript')
+    .option(
+        '--no-git',
+        'create a new project without initializing a git repository'
+    )
+    .action((name, options) => {
+        cli(name, options, 'gatsby')
     })
 
 program.parse()

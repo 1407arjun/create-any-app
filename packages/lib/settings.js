@@ -100,11 +100,6 @@ export default async function getSettings(options, type) {
                 }
             }
 
-            settings = {
-                ...settings,
-                config: (await configFiles()).configFiles
-            }
-
             const questions = [
                 {
                     type: 'confirm',

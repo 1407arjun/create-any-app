@@ -1,11 +1,12 @@
 import clear from 'clear'
+import fs from 'fs'
 import shell from 'shelljs'
 import next from './types/next.js'
 import download from './download.js'
 
 export default function main(name, settings) {
     clear()
-    shell.mkdir(name)
+    fs.mkdirSync(name)
 
     // Download template
     download(
@@ -13,6 +14,8 @@ export default function main(name, settings) {
         name,
         settings.ts && settings.ts.use ? settings.ts.use : false
     )
+
+    process.chdir(name)
 
     // Initialize npm
     shell.exec('npm init -y')
@@ -31,5 +34,5 @@ export default function main(name, settings) {
         shell.exec('git init')
         shell.exec('git add .')
         shell.exec('git commit -m "Initial commit"')
-    } else shell.rm('.gitignore')
+    } else fs.rmSync('.gitignore')
 }

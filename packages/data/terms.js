@@ -8,7 +8,7 @@ export default {
     postcss: 'PostCSS',
     sass: 'Sass/SCSS',
     less: 'Less',
-    stylus: 'Stylus',
+    styl: 'Stylus',
     esError: 'ESLint with error prevention only',
     esDefault: 'ESLint default config',
     esAirbnb: 'ESLint + Airbnb config',

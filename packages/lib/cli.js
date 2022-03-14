@@ -4,6 +4,7 @@ import clear from 'clear'
 import dir from './inquirer/dir.js'
 import getSettings from './settings.js'
 import main from './fs/main.js'
+import shell from 'shelljs'
 
 export default async function cli(name, options, type) {
     console.log('create-any-app v0.1.0')

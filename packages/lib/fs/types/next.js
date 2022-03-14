@@ -1,5 +1,4 @@
 import fs from 'fs'
-import path from 'path'
 
 export default function next(name, settings) {
     console.log(settings)
@@ -15,8 +14,6 @@ export default function next(name, settings) {
         }
 
         if (fs.existsSync(`src/styles/--${settings.cssFrame}`)) {
-            fs.rmSync('src/styles/*.module.css')
-
             fs.readdirSync(`src/styles/--${settings.cssFrame}`).forEach(
                 (file) => {
                     fs.copyFileSync(
@@ -26,7 +23,12 @@ export default function next(name, settings) {
                 }
             )
 
-            fs.rmSync(`src/styles/--*`, { recursive: true })
+            fs.readdirSync('src/styles').forEach((file) => {
+                if (file.slice(0, 2) === '--')
+                    fs.rmSync(`src/styles/${file}`, { recursive: true })
+                if (file.split('.')[0] === 'Home')
+                    fs.rmSync(`src/styles/${file}`)
+            })
         }
 
         if (fs.existsSync(`src/pages/--${settings.cssFrame}`)) {
@@ -39,14 +41,31 @@ export default function next(name, settings) {
                 }
             )
 
-            fs.rmSync(`src/pages/--*`, { recursive: true })
+            fs.readdirSync('src/pages').forEach((file) => {
+                if (file.slice(0, 2) === '--')
+                    fs.rmSync(`src/pages/${file}`, { recursive: true })
+            })
         }
+    } else {
+        fs.readdirSync('src/pages').forEach((file) => {
+            if (file.slice(0, 2) === '--')
+                fs.rmSync(`src/pages/${file}`, { recursive: true })
+        })
+
+        fs.readdirSync('src/styles').forEach((file) => {
+            if (file.slice(0, 2) === '--')
+                fs.rmSync(`src/styles/${file}`, { recursive: true })
+        })
     }
 
     if (settings.cssProc) {
         fs.readdirSync('src/styles').forEach((file) => {
             if (file.split('.')[1] !== settings.cssProc)
                 fs.rmSync(`src/styles/${file}`)
+        })
+    } else {
+        fs.readdirSync('src/styles').forEach((file) => {
+            fs.rmSync(`src/styles/${file}`)
         })
     }
 
@@ -55,11 +74,11 @@ export default function next(name, settings) {
     }
 
     if (settings.linter) {
-        fs.copyFileSync(`--eslint/${settings.linter}.json`, '/')
+        fs.copyFileSync(`--eslint/${settings.linter.toLowerCase()}.json`, '/')
         fs.renameSync(`${settings.linter}.json`, '.eslintrc.json')
     }
 
-    fs.rmSync(`src/pages/--*`, { recursive: true })
-    fs.rmSync(`src/styles/--*`, { recursive: true })
-    fs.rmSync(`--*`, { recursive: true })
+    fs.readdirSync('/').forEach((file) => {
+        if (file.slice(0, 2) === '--') fs.rmSync(file, { recursive: true })
+    })
 }

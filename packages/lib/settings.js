@@ -63,8 +63,8 @@ export default async function getSettings(options, type) {
                         settings = {
                             ...settings,
                             ts: {
-                                use: true,
-                                babel: (await babel()).babel
+                                use: true
+                                //babel: (await babel()).babel
                             }
                         }
                         break

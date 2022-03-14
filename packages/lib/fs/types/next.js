@@ -92,6 +92,10 @@ export default function next(name, settings) {
     })
 
     let packageFile = ejf(path.join(process.cwd(), 'package.json'))
+    packageFile.set(
+        'description',
+        'This is a Next.js project bootstrapped with create-any-app.'
+    )
     packageFile.set('scripts.build', 'next build')
     packageFile.set('scripts.dev', 'next dev')
     packageFile.set('scripts.lint', 'next lint')

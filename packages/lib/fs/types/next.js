@@ -1,15 +1,20 @@
 import fs from 'fs'
+import shell from 'shelljs'
 
 export default function next(name, settings) {
     console.log(settings)
     if (!settings.state) {
         fs.rmSync('src/store', { recursive: true })
+    } else {
+        shell.exec('npm i @reduxjs/toolkit react-redux')
+        if (settings.ts && settings.ts.use)
+            shell.exec('npm i -D @types/react-redux')
     }
 
-    if (settings.cssFrame) {
+    if (settings.cssFrame && settings.cssFrame !== 'none') {
         if (fs.existsSync(`--${settings.cssFrame}`)) {
             fs.readdirSync(`--${settings.cssFrame}`).forEach((file) => {
-                fs.copyFileSync(`--${settings.cssFrame}/${file}`, '/')
+                fs.copyFileSync(`--${settings.cssFrame}/${file}`, file)
             })
         }
 
@@ -18,7 +23,7 @@ export default function next(name, settings) {
                 (file) => {
                     fs.copyFileSync(
                         `src/styles/--${settings.cssFrame}/${file}`,
-                        'src/styles'
+                        `src/styles/${file}`
                     )
                 }
             )
@@ -36,7 +41,7 @@ export default function next(name, settings) {
                 (file) => {
                     fs.copyFileSync(
                         `src/pages/--${settings.cssFrame}/${file}`,
-                        'src/pages'
+                        `src/pages/${file}`
                     )
                 }
             )
@@ -65,7 +70,7 @@ export default function next(name, settings) {
         })
     } else {
         fs.readdirSync('src/styles').forEach((file) => {
-            fs.rmSync(`src/styles/${file}`)
+            if (file.split('.')[1] !== 'css') fs.rmSync(`src/styles/${file}`)
         })
     }
 
@@ -74,11 +79,14 @@ export default function next(name, settings) {
     }
 
     if (settings.linter) {
-        fs.copyFileSync(`--eslint/${settings.linter.toLowerCase()}.json`, '/')
+        fs.copyFileSync(
+            `--eslint/${settings.linter.toLowerCase()}.json`,
+            `${settings.linter.toLowerCase()}.json`
+        )
         fs.renameSync(`${settings.linter}.json`, '.eslintrc.json')
     }
 
-    fs.readdirSync('/').forEach((file) => {
+    fs.readdirSync('./').forEach((file) => {
         if (file.slice(0, 2) === '--') fs.rmSync(file, { recursive: true })
     })
 }

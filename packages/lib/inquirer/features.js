@@ -19,8 +19,8 @@ export default function features() {
                     name: 'Linter/Formatter',
                     value: 'linter',
                     checked: true
-                },
-                { name: 'Unit Testing', value: 'unit' }
+                }
+                //{ name: 'Unit Testing', value: 'unit' }
             ],
             loop: false
         }

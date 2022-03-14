@@ -1,12 +1,16 @@
 export default {
     next: [
         {
-            name: 'React-Redux',
-            value: 'reactRedux'
-        },
-        {
-            name: 'Redux',
-            value: 'redux'
+            name: 'Redux-Toolkit',
+            value: 'reduxToolkit'
         }
+        // {
+        //     name: 'React-Redux',
+        //     value: 'reactRedux'
+        // },
+        // {
+        //     name: 'Redux',
+        //     value: 'redux'
+        // }
     ]
 }

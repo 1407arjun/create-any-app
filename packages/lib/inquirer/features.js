@@ -9,7 +9,7 @@ export default function features() {
             name: 'features',
             message: 'Check the features needed for your project:',
             choices: [
-                { name: 'Babel', value: 'babel', checked: true },
+                //{ name: 'Babel', value: 'babel', checked: true },
                 { name: 'TypeScript', value: 'ts' },
                 { name: 'Router', value: 'router', checked: true },
                 { name: 'State Management', value: 'state' },

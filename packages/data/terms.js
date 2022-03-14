@@ -4,12 +4,10 @@ export default {
     ckui: 'Chakra UI',
     mui: 'Material UI',
     ant: 'Ant Design',
-    none: 'None',
     postcss: 'PostCSS',
     sass: 'Sass/SCSS',
     less: 'Less',
     styl: 'Stylus',
-    esError: 'ESLint with error prevention only',
     esDefault: 'ESLint default config',
     esAirbnb: 'ESLint + Airbnb config',
     esStandard: 'ESLint + Standard config',
@@ -29,15 +27,17 @@ export const npm = {
     // ant: 'Ant Design',
     // none: 'None',
     //postcss: 'PostCSS',
-    sass: 'Sass/SCSS',
+    sass: 'npm i sass',
     less: 'Less',
     styl: 'Stylus',
-    esError: 'ESLint with error prevention only',
-    esDefault: 'ESLint default config',
-    esAirbnb: 'ESLint + Airbnb config',
-    esStandard: 'ESLint + Standard config',
-    esPrettier: 'ESLint + Prettier',
-    reduxToolkit: 'Redux-Toolkit'
+    esDefault: 'npm i -D eslint eslint-plugin-import eslint-config-next',
+    esAirbnb:
+        'npm i -D eslint eslint-plugin-import eslint-config-airbnb eslint-config-next',
+    esStandard:
+        'npm i -D eslint eslint-plugin-import eslint-config-standard eslint-config-next',
+    esPrettier:
+        'npm i -D eslint eslint-plugin-import eslint-config-prettier eslint-plugin-prettier eslint-config-next',
+    reduxToolkit: 'npm i @reduxjs/toolkit react-redux'
     // reactRedux: 'React-Redux',
     // redux: 'Redux',
     // jest: 'Jest',
@@ -45,17 +45,5 @@ export const npm = {
 }
 
 export const npmTypes = {
-    sass: 'Sass/SCSS',
-    less: 'Less',
-    styl: 'Stylus',
-    esError: 'ESLint with error prevention only',
-    esDefault: 'ESLint default config',
-    esAirbnb: 'ESLint + Airbnb config',
-    esStandard: 'ESLint + Standard config',
-    esPrettier: 'ESLint + Prettier',
-    reduxToolkit: 'Redux-Toolkit'
-    // reactRedux: 'React-Redux',
-    // redux: 'Redux',
-    // jest: 'Jest',
-    // mocha: 'Mocha + Chai'
+    reduxToolkit: 'npm i -D @types/react-redux'
 }

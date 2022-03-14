@@ -1,10 +1,6 @@
 export default {
     eslint: [
         {
-            name: 'ESLint with error prevention only',
-            value: 'esError'
-        },
-        {
             name: 'ESLint default config',
             value: 'esDefault'
         },

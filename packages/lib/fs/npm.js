@@ -1,20 +1,21 @@
 export const npm = {
-    tw: 'npm i -D tailwindcss',
-    bs: 'npm i -D bootstrap',
-    ckui: 'npm i @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^6',
-    sass: 'npm i -D sass',
-    less: 'npm i -D less',
-    styl: 'npm i -D stylus',
-    esDefault: 'npm i -D eslint eslint-plugin-import eslint-config-next',
+    tw: 'npm i --quiet -D tailwindcss',
+    bs: 'npm i --quiet -D bootstrap',
+    ckui: 'npm i--quiet @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^6',
+    sass: 'npm i --quiet -D sass',
+    less: 'npm i --quiet -D less',
+    styl: 'npm i --quiet -D stylus',
+    esDefault:
+        'npm i --quiet -D eslint eslint-plugin-import eslint-config-next',
     esAirbnb:
-        'npm i -D eslint eslint-plugin-import eslint-config-airbnb eslint-config-next',
+        'npm i --quiet -D eslint eslint-plugin-import eslint-config-airbnb eslint-config-next',
     esStandard:
-        'npm i -D eslint eslint-plugin-import eslint-config-standard eslint-config-next',
+        'npm i --quiet -D eslint eslint-plugin-import eslint-config-standard eslint-config-next',
     esPrettier:
-        'npm i -D eslint eslint-plugin-import eslint-config-prettier eslint-plugin-prettier eslint-config-next',
-    reduxToolkit: 'npm i @reduxjs/toolkit react-redux'
+        'npm i --quiet -D eslint eslint-plugin-import eslint-config-prettier eslint-plugin-prettier eslint-config-next',
+    reduxToolkit: 'npm i --quiet @reduxjs/toolkit react-redux'
 }
 
 export const npmTypes = {
-    reduxToolkit: 'npm i -D @types/react-redux'
+    reduxToolkit: 'npm i --quiet -D @types/react-redux'
 }

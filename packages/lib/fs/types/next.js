@@ -4,23 +4,13 @@ import shell from 'shelljs'
 import { npm, npmTypes } from '../npm.js'
 import ejf from 'edit-json-file'
 import chalk from 'chalk'
-import clui from 'clui'
+import ora from 'ora'
 
 export default function next(name, settings) {
     const dep = ['npm i']
     const devDep = ['npm i -D']
-    const Spinner = clui.Spinner
 
-    var spinner = new Spinner('Adding scripts...', [
-        '⣾',
-        '⣽',
-        '⣻',
-        '⢿',
-        '⡿',
-        '⣟',
-        '⣯',
-        '⣷'
-    ])
+    var spinner = new ora('Adding scripts...')
     spinner.start()
 
     let packageFile = ejf(path.join(process.cwd(), 'package.json'))
@@ -38,16 +28,7 @@ export default function next(name, settings) {
     console.log('\n', chalk.greenBright('✔️ Added scripts'))
 
     if (settings.ts && settings.ts.use) {
-        var spinner = new Spinner('Configuring TypeScript...', [
-            '⣾',
-            '⣽',
-            '⣻',
-            '⢿',
-            '⡿',
-            '⣟',
-            '⣯',
-            '⣷'
-        ])
+        var spinner = new ora('Configuring TypeScript...')
         spinner.start()
         devDep.push('typescript')
         spinner.stop()
@@ -57,16 +38,7 @@ export default function next(name, settings) {
     if (!settings.state) {
         fs.rmSync('src/store', { recursive: true })
     } else {
-        var spinner = new Spinner('Setting up store...', [
-            '⣾',
-            '⣽',
-            '⣻',
-            '⢿',
-            '⡿',
-            '⣟',
-            '⣯',
-            '⣷'
-        ])
+        var spinner = new ora('Setting up store...')
         spinner.start()
         dep.push(npm[settings.state].join(' '))
         if (settings.ts && settings.ts.use)
@@ -76,16 +48,7 @@ export default function next(name, settings) {
     }
 
     if (settings.cssFrame) {
-        var spinner = new Spinner('Configuring frameworks...', [
-            '⣾',
-            '⣽',
-            '⣻',
-            '⢿',
-            '⡿',
-            '⣟',
-            '⣯',
-            '⣷'
-        ])
+        var spinner = new ora('Configuring frameworks...')
         spinner.start()
         if (fs.existsSync(`--${settings.cssFrame}`)) {
             fs.readdirSync(`--${settings.cssFrame}`).forEach((file) => {
@@ -116,16 +79,7 @@ export default function next(name, settings) {
 
     if (settings.cssProc) {
         if (fs.existsSync(`src/styles/--${settings.cssProc}`)) {
-            var spinner = new Spinner('Configuring preprocessors...', [
-                '⣾',
-                '⣽',
-                '⣻',
-                '⢿',
-                '⡿',
-                '⣟',
-                '⣯',
-                '⣷'
-            ])
+            var spinner = new ora('Configuring preprocessors...')
             spinner.start()
             fs.readdirSync('src/styles').forEach((file) => {
                 if (file.split('.')[file.split('.').length - 1] === 'css')
@@ -152,32 +106,14 @@ export default function next(name, settings) {
     if (!settings.unit) {
         fs.rmSync('src/tests', { recursive: true })
     } else {
-        var spinner = new Spinner('Setting up unit tests...', [
-            '⣾',
-            '⣽',
-            '⣻',
-            '⢿',
-            '⡿',
-            '⣟',
-            '⣯',
-            '⣷'
-        ])
+        var spinner = new ora('Setting up unit tests...')
         spinner.start()
         spinner.stop()
         console.log('\n', chalk.greenBright('✔️ Setup unit testing'))
     }
 
     if (settings.linter) {
-        var spinner = new Spinner('Configuring linters...', [
-            '⣾',
-            '⣽',
-            '⣻',
-            '⢿',
-            '⡿',
-            '⣟',
-            '⣯',
-            '⣷'
-        ])
+        var spinner = new ora('Configuring linters...')
         spinner.start()
         fs.copyFileSync(
             `--eslint/${settings.linter.toLowerCase()}.json`,
@@ -189,16 +125,7 @@ export default function next(name, settings) {
         console.log('\n', chalk.greenBright('✔️ Configured linters'))
     }
 
-    var spinner = new Spinner('Cleaning up files...', [
-        '⣾',
-        '⣽',
-        '⣻',
-        '⢿',
-        '⡿',
-        '⣟',
-        '⣯',
-        '⣷'
-    ])
+    var spinner = new ora('\nCleaning up files...')
     spinner.start()
 
     fs.readdirSync('src/styles').forEach((file) => {
@@ -218,16 +145,7 @@ export default function next(name, settings) {
     spinner.stop()
     console.log('\n', chalk.greenBright('✔️ Cleaned up files'))
 
-    var spinner = new Spinner('Installing packages...', [
-        '⣾',
-        '⣽',
-        '⣻',
-        '⢿',
-        '⡿',
-        '⣟',
-        '⣯',
-        '⣷'
-    ])
+    var spinner = new ora('Installing packages...')
     spinner.start()
 
     shell.exec(dep.join(' '))

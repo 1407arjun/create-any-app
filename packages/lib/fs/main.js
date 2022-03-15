@@ -4,15 +4,14 @@ import shell from 'shelljs'
 import next from './types/next.js'
 import download from './download.js'
 import chalk from 'chalk'
-import clui from 'clui'
+import ora from 'ora'
 
 export default async function main(name, settings) {
     console.log('\ncreate-any-app v0.1.0')
-    const Spinner = clui.Spinner
     var silentState = shell.config.silent
 
     fs.mkdirSync(name)
-    var spinner = new Spinner('Fetching template files...')
+    var spinner = new ora('Fetching template files...')
     spinner.start()
 
     // Download template
@@ -27,16 +26,7 @@ export default async function main(name, settings) {
     process.chdir(name)
 
     // Initialize npm
-    var spinner = new Spinner('Initializing npm...', [
-        '⣾',
-        '⣽',
-        '⣻',
-        '⢿',
-        '⡿',
-        '⣟',
-        '⣯',
-        '⣷'
-    ])
+    var spinner = new ora('Initializing npm...')
     spinner.start()
     shell.config.silent = true
     shell.exec('npm init -y')
@@ -53,16 +43,7 @@ export default async function main(name, settings) {
     }
 
     // Run audit
-    var spinner = new Spinner('Running audit...', [
-        '⣾',
-        '⣽',
-        '⣻',
-        '⢿',
-        '⡿',
-        '⣟',
-        '⣯',
-        '⣷'
-    ])
+    var spinner = new ora('Running audit...')
     spinner.start()
     shell.exec('npm audit fix')
     spinner.stop()
@@ -70,16 +51,7 @@ export default async function main(name, settings) {
 
     // Setup Git repository
     if (settings.git) {
-        var spinner = new Spinner('Initializing a Git repository...', [
-            '⣾',
-            '⣽',
-            '⣻',
-            '⢿',
-            '⡿',
-            '⣟',
-            '⣯',
-            '⣷'
-        ])
+        var spinner = new ora('Initializing a Git repository...')
         spinner.start()
         shell.config.silent = true
         shell.exec('git init')

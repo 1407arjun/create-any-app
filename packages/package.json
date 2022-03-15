@@ -1,6 +1,6 @@
 {
   "name": "create-any-app",
-  "version": "0.5.0",
+  "version": "1.0.0",
   "description": "Command line interface for rapid creation, configuration and development of JavaScript apps.",
   "type": "module",
   "main": "bin/caa.js",
@@ -47,13 +47,13 @@
   "dependencies": {
     "chalk": "^5.0.0",
     "clear": "^0.1.0",
-    "clui": "^0.3.6",
     "commander": "^9.0.0",
     "conf": "^10.1.1",
     "execa": "^6.1.0",
     "figlet": "^1.5.2",
     "inquirer": "^8.2.0",
     "lodash": "^4.17.21",
+    "ora": "^6.1.0",
     "shelljs": "^0.8.5"
   }
 }

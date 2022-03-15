@@ -3,7 +3,7 @@ import fs from 'fs'
 import path from 'path'
 import dir from './inquirer/dir.js'
 import main from './fs/main.js'
-import clui from 'clui'
+import ora from 'ora'
 
 export default async function create(preset, name, options) {
     console.log('create-any-app v0.1.0')
@@ -22,9 +22,8 @@ export default async function create(preset, name, options) {
         if (fs.existsSync(name)) {
             const res = await dir(name)
             if (res.dir === 'overwrite') {
-                const spinner = new clui.Spinner(
-                    `Removing directory ${path.join(process.cwd(), name)} ...`,
-                    ['⣾', '⣽', '⣻', '⢿', '⡿', '⣟', '⣯', '⣷']
+                const spinner = new ora(
+                    `Removing directory ${path.join(process.cwd(), name)} ...`
                 )
                 spinner.start()
                 fs.rmSync(name, { recursive: true })

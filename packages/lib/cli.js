@@ -1,10 +1,9 @@
 import fs from 'fs'
 import path from 'path'
-import clear from 'clear'
 import dir from './inquirer/dir.js'
 import getSettings from './settings.js'
 import main from './fs/main.js'
-import shell from 'shelljs'
+import clui from 'clui'
 
 export default async function cli(name, options, type) {
     console.log('create-any-app v0.1.0')
@@ -14,11 +13,14 @@ export default async function cli(name, options, type) {
     if (fs.existsSync(name)) {
         const res = await dir(name)
         if (res.dir === 'overwrite') {
-            console.log(
-                `Removing directory ${path.join(process.cwd(), name)} ...`
+            const spinner = new clui.Spinner(
+                `Removing directory ${path.join(process.cwd(), name)} ...`,
+                ['⣾', '⣽', '⣻', '⢿', '⡿', '⣟', '⣯', '⣷']
             )
+            spinner.start()
             fs.rmSync(name, { recursive: true })
-            clear()
+            spinner.stop()
+            console.log('\n')
             settings = await getSettings(options, type)
         } else process.exit(0)
     } else settings = await getSettings(options, type)

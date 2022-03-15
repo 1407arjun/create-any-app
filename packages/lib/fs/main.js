@@ -6,8 +6,9 @@ import download from './download.js'
 import Listr from 'listr'
 import chalk from 'chalk'
 
-export default function main(name, settings) {
+export default async function main(name, settings) {
     clear()
+    console.log('\n\n')
     const ops = () => {
         switch (settings.type) {
             case 'next':
@@ -41,7 +42,7 @@ export default function main(name, settings) {
                 process.chdir(name)
 
                 // Initialize npm
-                shell.exec('npm init -y --quiet')
+                shell.exec('npm init -y')
             }
         },
         // Perform removal as per settings
@@ -50,7 +51,7 @@ export default function main(name, settings) {
             title: 'Running audit',
             task: () => {
                 // Run audit
-                shell.exec('npm audit fix --quiet')
+                shell.exec('npm audit fix')
             }
         },
         {
@@ -59,24 +60,19 @@ export default function main(name, settings) {
                 // Setup Git repository
                 if (settings.git) {
                     shell.exec('git init')
-                    shell.exec('git add -q .')
+                    shell.exec('git add .')
                     shell.exec('git commit -q -m "Initial commit"')
                 } else fs.rmSync('.gitignore')
-            }
-        },
-        {
-            title: 'Wrapping up..',
-            task: () => {
-                console.log(
-                    '\n\n',
-                    'Run your new app using the following commands:\n',
-                    chalk.blueBright(`cd ${name}`),
-                    '\n',
-                    chalk.blueBright('npm run dev')
-                )
             }
         }
     ])
 
-    tasks.run()
+    await tasks.run()
+
+    shell.cd(name)
+    console.log(
+        '\n\n',
+        'Run your new app using',
+        chalk.blueBright('npm run dev')
+    )
 }

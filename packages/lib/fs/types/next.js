@@ -3,15 +3,17 @@ import path from 'path'
 import shell from 'shelljs'
 import { npm, npmTypes } from '../npm.js'
 import ejf from 'edit-json-file'
-import Listr from 'listr'
 
 export default function next(name, settings) {
+    const dep = ['npm i']
+    const devDep = ['npm i -D']
+
     return [
         {
             title: 'Checking TypeScript status',
             task: () => {
                 if (settings.ts && settings.ts.use) {
-                    shell.exec('npm i --quiet -D typescript')
+                    devDep.push('typescript')
                 }
             }
         },
@@ -21,9 +23,9 @@ export default function next(name, settings) {
                 if (!settings.state) {
                     fs.rmSync('src/store', { recursive: true })
                 } else {
-                    shell.exec(npm[settings.state])
+                    dep.push(npm[settings.state].join(' '))
                     if (settings.ts && settings.ts.use)
-                        shell.exec(npmTypes[settings.state])
+                        devDep.push(npmTypes[settings.state].join(' '))
                 }
             }
         },
@@ -58,7 +60,7 @@ export default function next(name, settings) {
                             fs.rmSync(`src/pages/${file}`, { recursive: true })
                     })
 
-                    shell.exec(npm[settings.cssFrame])
+                    dep.push(npm[settings.cssFrame].join(' '))
                 }
             }
         },
@@ -86,7 +88,7 @@ export default function next(name, settings) {
                             )
                         })
 
-                        shell.exec(npm[settings.cssProc])
+                        devDep.push(npm[settings.cssProc].join(' '))
                     }
                 }
             }
@@ -104,7 +106,7 @@ export default function next(name, settings) {
                         `${settings.linter.toLowerCase()}.json`
                     )
                     fs.renameSync(`${settings.linter}.json`, '.eslintrc.json')
-                    shell.exec(npm[settings.linter])
+                    devDep.push(npm[settings.linter].join(' '))
                 }
             }
         },
@@ -140,6 +142,13 @@ export default function next(name, settings) {
                 packageFile.set('scripts.lint', 'next lint')
                 packageFile.set('scripts.start', 'next start')
                 packageFile.save()
+            }
+        },
+        {
+            title: 'Installing packages',
+            task: () => {
+                shell.exec(dep.join(' '))
+                shell.exec(devDep.join(' '))
             }
         }
     ]

@@ -2,6 +2,7 @@
 
 import { program } from 'commander'
 import cli from '../lib/cli.js'
+import create from '../lib/create.js'
 import preset from '../lib/preset.js'
 
 program
@@ -12,7 +13,7 @@ program
     .version('0.1.0', '-v, ,--vers, --version', 'print create-any-app version')
 
 program
-    .command('preset')
+    .command('create')
     .description('Create a new project from a preset configuration')
     .argument('<preset-name>', 'name of the preset')
     .argument('<project-name>', 'name of the project')
@@ -20,6 +21,12 @@ program
         '--no-git',
         'create a new project without initializing a git repository'
     )
+    .action(create)
+
+program
+    .command('preset')
+    .description('Manage preset configurations')
+    .option('-r, -remove [preset-name]', 'remove a preset')
     .action(preset)
 
 program

@@ -69,10 +69,11 @@ export default async function main(name, settings) {
 
     await tasks.run()
 
-    shell.cd(name)
     console.log(
         '\n\n',
-        'Run your new app using',
+        'Run your new app using the following commands:\n',
+        chalk.blueBright(`cd ${name}`),
+        '\n',
         chalk.blueBright('npm run dev')
     )
 }

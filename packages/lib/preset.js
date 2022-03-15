@@ -1,40 +1,42 @@
+import chalk from 'chalk'
 import config from './conf.js'
-import fs from 'fs'
-import dir from './inquirer/dir.js'
-import clear from 'clear'
-import main from './fs/main.js'
+import terms from '../data/terms.js'
 
-export default async function preset(preset, name, options) {
-    console.log('create-any-app v0.1.0')
+export default function preset(options) {
+    const presets = config.get('presets')
 
-    let settings = {}
-    let flag = 0
-    for (const c of config.get('presets')) {
-        if (c.name.toLowerCase() === preset.toLowerCase()) {
-            settings = c
-            flag = 1
-            break
-        }
-    }
+    if (options.Remove) {
+        let flag = 0
+        presets.forEach((p) => {
+            if (p.name.toLowerCase() === options.Remove.toLowerCase()) {
+                flag = 1
+            }
+        })
 
-    if (flag === 1) {
-        if (fs.existsSync(name)) {
-            const res = await dir(name)
-            if (res.dir === 'overwrite') {
-                console.log(
-                    `Removing directory ${path.join(process.cwd(), name)} ...`
-                )
-                fs.rmSync(name, { recursive: true })
-                clear()
-            } else process.exit(0)
-        }
+        if (flag === 1) {
+            const newPresets = presets.filter((p) => {
+                return p.name.toLowerCase() !== options.Remove.toLowerCase()
+            })
 
-        if (!options.git) settings = { ...settings, git: false }
-        else settings = { ...settings, git: true }
+            config.set('presets', newPresets)
+            console.log(chalk.red(`Removed preset ${options.Remove}`))
+        } else console.log(chalk.red(`Preset ${options.Remove} not found`))
     } else {
-        console.log(`No preset found with the name ${preset}`)
-        process.exit(0)
-    }
+        if (presets.length > 0)
+            console.log(chalk.blueBright('Found the following presets:'))
+        else console.log(chalk.blueBright('No presets found'))
+        presets.forEach((p) => {
+            const s = []
+            if (p.babel) s.push('Babel')
+            if (p.ts) s.push('TypeScript')
+            if (p.router) s.push('Router')
+            if (p.state) s.push(terms[p.state])
+            if (p.cssProc) s.push(terms[p.cssProc])
+            if (p.cssFrame) s.push(terms[p.cssFrame])
+            if (p.linter) s.push(terms[p.linter])
+            if (p.unit) s.push(terms[p.unit])
 
-    main(name, settings)
+            console.log(p.name + chalk.yellow(' [' + s.join(', ') + ']'))
+        })
+    }
 }

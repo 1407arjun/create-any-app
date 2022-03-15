@@ -9,6 +9,7 @@ import configFiles from './inquirer/features/configFiles.js'
 import version from './inquirer/features/version.js'
 import terms from '../data/terms.js'
 import inquirer from 'inquirer'
+import chalk from 'chalk'
 import config from './conf.js'
 
 export default async function getSettings(options, type) {
@@ -35,7 +36,7 @@ export default async function getSettings(options, type) {
                         if (c.linter) s.push(terms[c.linter])
                         if (c.unit) s.push(terms[c.unit])
 
-                        return c.name + ' [' + s.join(', ') + ']'
+                        return c.name + chalk.yellow(' [' + s.join(', ') + ']')
                     }),
                     {
                         name: 'Manually select features',

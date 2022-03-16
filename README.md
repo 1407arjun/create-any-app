@@ -10,11 +10,8 @@ npm i -g create-any-app
 
 -   `chalk` for coloured output
 -   `clear` to clear the terminal screen
--   `ora` for spinners
 -   `commander` for complex argument parsing and subcommand support
 -   `conf` to save and load config
--   `execa` to run external commands
 -   `figlet` for creating ASCII art from text
 -   `inquirer` for complex input prompts
--   `lodash` as a utility library
 -   `shelljs` for running UNIX shell commands in Node.js

@@ -1,11 +1,11 @@
 import clear from 'clear'
-import fs from 'fs'
+import fs from 'fs-extra'
 import shell from 'shelljs'
 import next from './types/next.js'
 import download from './download.js'
 import chalk from 'chalk'
 
-export default async function main(name, settings) {
+export default function main(name, settings) {
     console.log('\ncreate-any-app v0.1.0')
     var silentState = shell.config.silent
 
@@ -48,7 +48,7 @@ export default async function main(name, settings) {
         shell.exec('git commit -q -m "Initial commit"')
         shell.config.silent = silentState
         console.log('\n', chalk.greenBright('✔️ Initialized Git repository'))
-    } else fs.rmSync('.gitignore')
+    } else fs.removeSync('.gitignore')
 
     console.log(
         '\n',

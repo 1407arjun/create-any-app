@@ -1,10 +1,9 @@
-import fs from 'fs'
+import fs from 'fs-extra'
 import path from 'path'
 import shell from 'shelljs'
 import { npm, npmTypes, scripts } from '../npm.js'
 import ejf from 'edit-json-file'
 import chalk from 'chalk'
-import copy from '../utils/copy.js'
 import remove from '../utils/remove.js'
 
 export default function next(name, settings) {
@@ -30,9 +29,9 @@ export default function next(name, settings) {
     }
 
     if (!settings.state) {
-        fs.rmSync('src/store', { recursive: true })
+        fs.removeSync('src/store')
     } else {
-        copy(`src/store/--${settings.state}`, `src/store`)
+        fs.copySync(`src/store/--${settings.state}`, `src/store`)
         remove('src/store')
 
         dep.push(npm[settings.state].join(' '))
@@ -42,8 +41,8 @@ export default function next(name, settings) {
     }
 
     if (settings.cssFrame) {
-        copy(`--${settings.cssFrame}`, `./`)
-        copy(`src/pages/--${settings.cssFrame}`, `src/pages`)
+        fs.copySync(`--${settings.cssFrame}`, `./`)
+        fs.copySync(`src/pages/--${settings.cssFrame}`, `src/pages`)
         remove('src/pages')
 
         dep.push(npm[settings.cssFrame].join(' '))
@@ -54,12 +53,10 @@ export default function next(name, settings) {
         if (fs.existsSync(`src/styles/--${settings.cssProc}`)) {
             fs.readdirSync('src/styles').forEach((file) => {
                 if (file.split('.')[file.split('.').length - 1] === 'css')
-                    fs.rmSync(`src/styles/${file}`, {
-                        recursive: true
-                    })
+                    fs.removeSync(`src/styles/${file}`)
             })
 
-            copy(`src/styles/--${settings.cssProc}`, `src/styles`)
+            fs.copySync(`src/styles/--${settings.cssProc}`, `src/styles`)
 
             devDep.push(npm[settings.cssProc].join(' '))
             console.log('\n', chalk.greenBright('✔️ Configured preprocessors'))
@@ -67,10 +64,10 @@ export default function next(name, settings) {
     }
 
     if (!settings.unit) {
-        fs.rmSync('src/tests', { recursive: true })
+        fs.removeSync('src/tests')
     } else {
-        copy(`--${settings.unit}`, `./`)
-        copy(`src/tests/--${settings.unit}`, `src/tests`)
+        fs.copySync(`--${settings.unit}`, `./`)
+        fs.copySync(`src/tests/--${settings.unit}`, `src/tests`)
         remove('src/tests')
 
         dep.push(npm[settings.unit].join(' '))
@@ -78,6 +75,7 @@ export default function next(name, settings) {
             devDep.push(npmTypes[settings.unit].join(' '))
 
         packageFile.set('scripts.test', scripts.next.test[settings.unit])
+        packageFile.save()
         console.log('\n', chalk.greenBright('✔️ Setup unit testing'))
     }
 
@@ -91,11 +89,6 @@ export default function next(name, settings) {
         devDep.push(npm[settings.linter].join(' '))
         console.log('\n', chalk.greenBright('✔️ Configured linters'))
     }
-
-    fs.readdirSync('src/styles').forEach((file) => {
-        if (file.slice(0, 2) === '--')
-            fs.rmSync(`src/styles/${file}`, { recursive: true })
-    })
 
     remove('src/styles')
     remove('src/pages')

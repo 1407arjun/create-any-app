@@ -1,9 +1,9 @@
-import fs from 'fs'
+import fs from 'fs-extra'
 import path from 'path'
 import dir from './inquirer/dir.js'
 import getSettings from './settings.js'
 import main from './fs/main.js'
-import ora from 'ora'
+import chalk from 'chalk'
 
 export default async function cli(name, options, type) {
     console.log('create-any-app v0.1.0')
@@ -13,12 +13,14 @@ export default async function cli(name, options, type) {
     if (fs.existsSync(name)) {
         const res = await dir(name)
         if (res.dir === 'overwrite') {
-            const spinner = new ora(
-                `Removing directory ${path.join(process.cwd(), name)} ...`
+            console.log(
+                '\n',
+                chalk.blue(
+                    `Removing directory ${path.join(process.cwd(), name)} ...`
+                )
             )
-            spinner.start()
-            fs.rmSync(name, { recursive: true })
-            spinner.stop()
+
+            fs.removeSync(name)
             console.log('\n')
             settings = await getSettings(options, type)
         } else process.exit(0)

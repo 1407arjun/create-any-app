@@ -1,6 +1,6 @@
 {
   "name": "create-any-app",
-  "version": "1.0.2",
+  "version": "1.1.1",
   "description": "Command line interface for rapid creation, configuration and development of JavaScript apps.",
   "type": "module",
   "main": "bin/caa.js",

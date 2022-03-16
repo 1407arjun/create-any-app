@@ -4,4 +4,10 @@ Command line interface for rapid creation, configuration and development of Java
 
 ```
 npm i -g create-any-app
+
+create-any-app --help
+
+//OR
+
+caa --help
 ```

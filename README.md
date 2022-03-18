@@ -21,7 +21,7 @@ All templates used can be found in the `templates` directory. The following conv
 -   Directories starting with `--` contain the files for the particular configuration corresponding to the name of the directory which are either added or overwritten during configuration. (For example `--tw` would contain files for TailwindCSS.)
 -   The templates do not contain a `package.json` file as they are generated when the project is initialized.
 
-### Forking
+### Local Development
 
 To get a local copy up and running follow these simple steps.
 

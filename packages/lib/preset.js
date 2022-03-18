@@ -27,6 +27,7 @@ export default function preset(options) {
         else console.log(chalk.blueBright('No presets found'))
         presets.forEach((p) => {
             const s = []
+            if (c.type) s.push(terms[c.type])
             if (p.babel) s.push('Babel')
             if (p.ts) s.push('TypeScript')
             if (p.router) s.push('Router')

@@ -16,7 +16,7 @@ You **don’t** need to install or configure tools like webpack or Babel. They a
 
 Create a project and configure its options else use a preset, and you’re good to go.
 
-Run `create-any-app --help` for commands.
+Run `create-any-app --help` for help with commands.
 
 #### The following frameworks are supported:
 - Next.js
@@ -133,6 +133,6 @@ Your app is ready to be deployed.
   - Stylus
 #### Linters/Formatters
   - ESLint with default config
-  - ESLint + Airbnb
-  - ESLint + Standard
+  - ESLint + Airbnb config
+  - ESLint + Standard config
   - ESLint + Prettier    

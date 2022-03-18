@@ -60,6 +60,9 @@ export default function next(name, settings) {
             })
 
             fs.copySync(`src/styles/--${settings.cssProc}`, `src/styles`)
+            if (!settings.cssFrame) {
+                fs.copySync(`src/pages/--${settings.cssProc}`, `src/pages`)
+            }
 
             devDep.push(npm[settings.cssProc].join(' '))
             console.log('\n', chalk.greenBright('✔️ Configured preprocessors'))

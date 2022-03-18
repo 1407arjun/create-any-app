@@ -50,6 +50,7 @@ People _love_ thorough bug reports. I'm not even kidding.
 ## Use a Consistent Coding Style
 
 -   4 spaces for indentation
+-   Use the `.eslintrc` and `.prettierrc` config files to ensure consistent coding style and format
 -   You can try running `npm run lint` for style unification
 
 ## License

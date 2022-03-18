@@ -1,4 +1,5 @@
 export default {
+    next: 'Next.js',
     tw: 'TailwindCSS',
     bs: 'Bootstrap',
     ckui: 'Chakra UI',

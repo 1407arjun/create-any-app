@@ -5,7 +5,7 @@ Create Any App is a command line interface for rapid creation, configuration and
 ## Quick Start
 
 ```sh
-npx create-any-app <framework> my-app 
+npx create-any-app <framework> my-app
 ```
 
 > If you've previously installed `create-any-app` globally via `npm install -g create-any-app`, we recommend you uninstall the package using `npm uninstall -g create-any-app` to ensure that `npx` always uses the latest version.
@@ -19,15 +19,17 @@ Create a project and configure its options else use a preset, and you’re good 
 Run `create-any-app --help` for help with commands.
 
 #### The following frameworks are supported:
-- Next.js
+
+-   Next.js
 
 #### The following configurations are supported in configuration mode ([view details](#supported-configurations)):
-- TypeScript Support
-- Routers
-- State Management Tools
-- CSS Frameworks
-- CSS Preprocessors
-- Linters/Formatters
+
+-   TypeScript Support
+-   Routers
+-   State Management Tools
+-   CSS Frameworks
+-   CSS Preprocessors
+-   Linters/Formatters
 
 > When using configuration mode, you will be given an option to save the current configuration as a preset which can then be selected when running `create-any-app <framework> my-app` again or using the [command line directly](#selecting-a-preset-directly).
 
@@ -44,18 +46,25 @@ npx create-any-app <framework> my-app
 ```
 
 ### Command line
+
 `create-any-app` or `caa` can be used interchangably:
+
 ```sh
 create-any-app <framework> my-app
 ```
+
 ##### OR
+
 ```sh
 caa <framework> my-app
 ```
 
+Follow the on screen instructions to get your app running once the configuration processes have completed.
+
 ### Selecting a preset directly
 
 You can now directly start a new app from a preset using the create command.
+
 > Preset functionality requires the package to be installed globally using `npm install -g create-any-app`.
 
 ```sh
@@ -63,18 +72,23 @@ create-any-app create <preset-name> my-app
 ```
 
 #### View all presets
+
 List all presets using the `preset` command.
+
 ```sh
 create-any-app preset
 ```
 
 #### Removing a preset
+
 Remove a preset using the `preset` command with the `--remove` or `-r` flag with the preset name as an argument.
+
 ```sh
 create-any-app preset --remove <preset-name>
 ```
 
 ### Options
+
 Optionally you can pass certain flags to the creation command to minimally configure projects without the configuration screen.
 
 #### Creating a TypeScript app
@@ -84,6 +98,7 @@ You can start a new TypeScript app by using the `--typescript` or `-ts` to the c
 ```sh
 npx create-any-app <framework> my-app --typescript
 ```
+
 For advanced configurations, you can select the TypeScript option while configuring your project instead of the `--typescript` flag.
 
 #### Initializing a Git repository
@@ -93,6 +108,7 @@ Create Any App by default initializes a Git repository in the project directory.
 ```sh
 npx create-any-app <framework> my-app --no-git
 ```
+
 ```sh
 npx create-any-app create <preset-name> my-app --no-git
 ```
@@ -101,7 +117,7 @@ npx create-any-app create <preset-name> my-app --no-git
 
 Inside the newly created project, some built-in commands are added as per the chosen framework:
 
-#### `npm start` 
+#### `npm start`
 
 Starts the production server at a specified URL as per the chosen framework.
 
@@ -120,19 +136,29 @@ Runs the linter/formatter, if ESLint is configured.
 Your app is ready to be deployed.
 
 ## Supported Configurations
+
 #### TypeScript Support (Yes/No)
+
 #### Routers (Default router provided by the framework, else React-Router)
+
 #### State Management
-  - Redux-Toolkit
+
+-   Redux-Toolkit
+
 #### CSS Frameworks
-  - TailwindCSS
-  - Chakra-UI
+
+-   TailwindCSS
+-   Chakra-UI
+
 #### CSS Preprocessors
-  - Sass/SCSS
-  - Less
-  - Stylus
+
+-   Sass/SCSS
+-   Less
+-   Stylus
+
 #### Linters/Formatters
-  - ESLint with default config
-  - ESLint + Airbnb config
-  - ESLint + Standard config
-  - ESLint + Prettier    
+
+-   ESLint with default config
+-   ESLint + Airbnb config
+-   ESLint + Standard config
+-   ESLint + Prettier

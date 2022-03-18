@@ -19,14 +19,18 @@ export default async function getSettings(options, type) {
     if (options.typescript) {
         settings = { ...settings, ts: { use: true } }
     } else {
+        const presets = config.get('presets').filter((c) => {
+            return c.type === type
+        })
         const questions = [
             {
                 type: 'list',
                 name: 'preset',
                 message: 'Please pick a preset:',
                 choices: [
-                    ...config.get('presets').map((c) => {
+                    ...presets.map((c) => {
                         const s = []
+                        if (c.type) s.push(terms[c.type])
                         if (c.babel) s.push('Babel')
                         if (c.ts) s.push('TypeScript')
                         if (c.router) s.push('Router')

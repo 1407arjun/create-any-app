@@ -8,7 +8,10 @@ import remove from '../utils/remove.js'
 
 export default function next(name, settings) {
     const dep = ['npm i next react react-dom']
-    const devDep = ['npm i -D @types/node @types/react @types/react-dom']
+    const devDep = ['npm i -D']
+
+    if (settings.ts && settings.ts.use)
+        devDep.push('@types/node @types/react @types/react-dom')
 
     let packageFile = ejf(path.join(process.cwd(), 'package.json'))
     packageFile.set(

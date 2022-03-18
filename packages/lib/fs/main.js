@@ -6,7 +6,6 @@ import download from './download.js'
 import chalk from 'chalk'
 
 export default function main(name, settings) {
-    console.log('\ncreate-any-app v0.1.0')
     var silentState = shell.config.silent
 
     fs.mkdirSync(name)

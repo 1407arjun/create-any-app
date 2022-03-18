@@ -6,8 +6,6 @@ import main from './fs/main.js'
 import chalk from 'chalk'
 
 export default async function create(preset, name, options) {
-    console.log('create-any-app v0.1.0')
-
     let settings = {}
     let flag = 0
     for (const c of config.get('presets')) {

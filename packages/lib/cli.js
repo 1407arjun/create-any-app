@@ -6,8 +6,6 @@ import main from './fs/main.js'
 import chalk from 'chalk'
 
 export default async function cli(name, options, type) {
-    console.log('create-any-app v0.1.0')
-
     let settings = {}
 
     if (fs.existsSync(name)) {

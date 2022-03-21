@@ -112,7 +112,7 @@ Following are some of the guidelines that have to be followed when creating/modi
 
 ### Contributing to the frameworks:
 
-Following are some of the guidelines that have to be followed when creating/modifying a template:
+Following are some of the guidelines that have to be followed when adding/modifying a framework configuration:
 
 -   Add the base versions of the templates (`default` or `typescript`) which are generated from the default templates of the framework itself and have the same project structure except the `tsconfig.json` and other type decalaration files.
 -   Add your framework as a seperate command to `bin/caa.js` and give it a type name to be used throughout the package.

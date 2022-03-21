@@ -109,3 +109,14 @@ Following are some of the guidelines that have to be followed when creating/modi
 -   The base versions of the templates (`default` or `typescript`) are generated from the default templates of the framework itself and have the same project structure except the `tsconfig.json` and other type decalaration files.
 -   Modification or addition of configurations must be made in both, the `default` and `typescript` templates, so as to maintain the same structure and functionality across the base templates.
 -   Create `--*` directories where necessary. The files in this directory will replace the default template files with the same name in its parent directory. (For example, if the default template contains an `index.js` file made using CSS and you want to add a TailwindCSS configuartion to it, then keep the `index.js` file as it is and in the same directory create a `--tw` directory and add an `index.js` file to it which is made with TailwindCSS)
+
+### Contributing to the frameworks:
+
+Following are some of the guidelines that have to be followed when creating/modifying a template:
+
+-   Add the base versions of the templates (`default` or `typescript`) which are generated from the default templates of the framework itself and have the same project structure except the `tsconfig.json` and other type decalaration files.
+-   Add your framework as a seperate command to `bin/caa.js` and give it a type name to be used throughout the package.
+-   Append the same name from the step above to the `switch` case in `main.js`.
+-   Create a new file by the name of the framework from above inside `lib/fs/types` and add all the file operations required for various options to it. (Refer `lib/fs/types/next.js` as an example)
+-   Use the functions provided under `lib/fs/util` to ease some of the file system operations.
+-   Finally, follow the [guidelines](#contributing-to-the-templates) to modify the base templates to cater to all options.

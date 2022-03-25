@@ -135,6 +135,10 @@ Runs the linter/formatter, if ESLint is configured.
 
 Your app is ready to be deployed.
 
+## Contributing
+
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**. Read [CONTRIBUTING.md](../CONTRIBUTING.md) and the [contributing guidelines](../README.md).
+
 ## Supported Configurations
 
 #### TypeScript Support (Yes/No)

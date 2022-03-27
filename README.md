@@ -33,27 +33,27 @@ In order to get a copy of the project you will require you to have Node.js (v14+
 
 Open the terminal in the folder in which you wish to clone the repository and enter the following command:
 
-```
+```sh
 git clone https://github.com/1407arjun/create-any-app.git
 cd create-any-app
 ```
 
 Install all the NPM packages:
 
-```
+```sh
 cd packages
 npm i
 ```
 
 To add the project to PATH run:
 
-```
+```sh
 npm link
 ```
 
 Run on the command line:
 
-```
+```sh
 create-any-app --help
 ```
 
@@ -68,7 +68,7 @@ create-any-app
 ├── .prettierrc
 ├── packages
 │   ├── bin
-│   │   ├── caa.js           //Entry point to the CLI
+│   │   └── caa.js           //Entry point to the CLI
 │   ├── data                 // Data about supported configurations
 │   └── lib
 │       ├── fs

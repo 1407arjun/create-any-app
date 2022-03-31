@@ -63,9 +63,7 @@ Follow the on screen instructions to get your app running once the configuration
 
 ### Selecting a preset directly
 
-You can now directly start a new app from a preset using the create command.
-
-> Preset functionality requires the package to be installed globally using `npm install -g create-any-app`.
+You can directly start a new app from a preset using the create command.
 
 ```sh
 create-any-app create <preset-name> my-app

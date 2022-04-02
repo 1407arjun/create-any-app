@@ -35,24 +35,24 @@ export default async function getSettings(options, type) {
                         if (c.type) {
                             if (
                                 types.frontend.types.find((t) => {
-                                    return t === c.type
+                                    return t.value === c.type
                                 })
                             )
                                 s.push(
                                     types.frontend.types.find((t) => {
-                                        return t === c.type
+                                        return t.value === c.type
                                     }).name
                                 )
                             else
                                 s.push(
                                     types.backend.types.find((t) => {
-                                        return t === c.type
+                                        return t.value === c.type
                                     }).name
                                 )
                         }
 
                         for (const f of types.frontend.types.find((t) => {
-                            return t === type
+                            return t.value === type
                         })
                             ? types.frontend.features
                             : types.backend.features) {

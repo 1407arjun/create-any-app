@@ -8,7 +8,7 @@ export default function version(type) {
             name: 'version',
             message:
                 'Choose a version of Next.js that you want to start the project with:',
-            choices: terms.versions[type],
+            choices: terms.version[type],
             default: 0
         }
     ]

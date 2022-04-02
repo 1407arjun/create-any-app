@@ -10,7 +10,7 @@ export default function features(type) {
             name: 'features',
             message: 'Check the features needed for your project:',
             choices: types.frontend.types.find((t) => {
-                return t === type
+                return t.value === type
             })
                 ? types.frontend.features
                 : types.backend.features,

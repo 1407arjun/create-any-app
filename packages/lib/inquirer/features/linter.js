@@ -7,7 +7,7 @@ export default function linter() {
             type: 'list',
             name: 'linter',
             message: 'Pick a linter/formatter config:',
-            choices: terms.linters,
+            choices: terms.linter,
             default: 0
         }
     ]

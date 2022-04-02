@@ -7,7 +7,7 @@ export default function unit() {
             type: 'list',
             name: 'unit',
             message: 'Pick unit testing solution:',
-            choices: terms.units,
+            choices: terms.unit,
             default: 0
         }
     ]

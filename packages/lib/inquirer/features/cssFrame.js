@@ -7,7 +7,7 @@ export default function cssFrame() {
             type: 'list',
             name: 'framework',
             message: 'Pick a CSS framework:',
-            choices: terms.cssFrames,
+            choices: terms.cssFrame,
             default: 0
         }
     ]

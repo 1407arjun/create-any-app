@@ -7,7 +7,7 @@ export default function cssProc() {
             type: 'list',
             name: 'preProcessor',
             message: 'Pick a CSS pre-processor:',
-            choices: terms.cssProcs,
+            choices: terms.cssProc,
             default: 0
         }
     ]

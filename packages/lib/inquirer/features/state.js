@@ -7,7 +7,7 @@ export default function state(type) {
             type: 'list',
             name: 'state',
             message: 'Pick a state-management library:',
-            choices: terms.states[type],
+            choices: terms.state[type],
             default: 0
         }
     ]

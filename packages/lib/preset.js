@@ -30,24 +30,24 @@ export default function preset(options) {
             if (p.type) {
                 if (
                     types.frontend.types.find((t) => {
-                        return t === p.type
+                        return t.value === p.type
                     })
                 )
                     s.push(
                         types.frontend.types.find((t) => {
-                            return t === p.type
+                            return t.value === p.type
                         }).name
                     )
                 else
                     s.push(
                         types.backend.types.find((t) => {
-                            return t === p.type
+                            return t.value === p.type
                         }).name
                     )
             }
 
             for (const f of types.frontend.types.find((t) => {
-                return t === type
+                return t.value === type
             })
                 ? types.frontend.features
                 : types.backend.features) {

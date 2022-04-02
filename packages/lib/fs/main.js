@@ -1,7 +1,8 @@
 import clear from 'clear'
 import fs from 'fs-extra'
 import shell from 'shelljs'
-import next from './types/next.js'
+import next from './frameworks/next.js'
+import express from './frameworks/express.js'
 import download from './download.js'
 import chalk from 'chalk'
 
@@ -13,7 +14,7 @@ export default function main(name, settings) {
 
     // Download template
     download(
-        settings.type,
+        'next',
         name,
         settings.ts && settings.ts.use ? settings.ts.use : false
     )
@@ -31,6 +32,8 @@ export default function main(name, settings) {
     switch (settings.type) {
         case 'next':
             next(name, settings)
+        case 'express':
+            express(name, settings)
         default:
             break
     }

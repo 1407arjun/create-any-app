@@ -114,9 +114,21 @@ Following are some of the guidelines that have to be followed when creating/modi
 
 Following are some of the guidelines that have to be followed when adding/modifying a framework configuration:
 
+-   If you are wanting to add a new framework, add the respective name, value pair to the corresponding catergory in `data/types.js` and also create a program command for the same as in `bin/caa.js`.
 -   Add the base versions of the templates (`default` or `typescript`) which are generated from the default templates of the framework itself and have the same project structure except the `tsconfig.json` and other type decalaration files.
 -   Add your framework as a seperate command to `bin/caa.js` and give it a type name to be used throughout the package.
 -   Append the same name from the step above to the `switch` case in `main.js`.
 -   Create a new file by the name of the framework from above inside `lib/fs/types` and add all the file operations required for various options to it. (Refer `lib/fs/types/next.js` as an example)
 -   Use the functions provided under `lib/fs/util` to ease some of the file system operations.
 -   Finally, follow the [guidelines](#contributing-to-the-templates) to modify the base templates to cater to all options.
+
+### Contributing to configurations:
+
+Following are some of the guidelines that have to be followed when adding/modifying a configuration:
+
+-   Add/Modify the respective name, value pair in the `data/types.js` file under the corresponding category.
+-   Next, if you wish to add a configuration to an existing one, then add the name, value pair to the respective file under `data/features`.
+-   If you wish to add a new configuration, then create a file under `data/features` by the same name used in the value and add the corresponding data in it. Also export the same in `data/terms.js`.
+-   For new configurations, also create an `inquirer` file under `lib/inquirer/features` and modify the `lib/settings.js` and `lib/preset.js` files as required by adding the new cases for the configuration.
+-   Modify the respective affected file workflows in `lib/fs/types` as mentioned [here](#contributing-to-the-frameworks).
+-   Finally, add the respective dependencies and dev dependencies for the configuration in `data/npm.js`.

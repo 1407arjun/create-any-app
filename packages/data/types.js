@@ -1,6 +1,6 @@
 export default {
     frontend: {
-        types: [{ name: 'next', value: 'Next.js' }],
+        types: [{ name: 'Next.js', value: 'next' }],
         features: [
             //{ name: 'Babel', value: 'babel', checked: true },
             { name: 'TypeScript', value: 'ts' },
@@ -16,5 +16,5 @@ export default {
             //{ name: 'Unit Testing', value: 'unit' }
         ]
     },
-    backend: { types: [{ name: 'express', value: 'Express.js' }] }
+    backend: { types: [{ name: 'Express.js', value: 'express' }] }
 }

@@ -1,5 +1,5 @@
 import inquirer from 'inquirer'
-import cssProcs from '../../../data/features/cssProcs.js'
+import terms from '../../../data/terms.js'
 
 export default function cssProc() {
     const questions = [
@@ -7,7 +7,7 @@ export default function cssProc() {
             type: 'list',
             name: 'preProcessor',
             message: 'Pick a CSS pre-processor:',
-            choices: cssProcs.preProcessors,
+            choices: terms.cssProcs,
             default: 0
         }
     ]

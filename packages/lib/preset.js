@@ -27,15 +27,52 @@ export default function preset(options) {
         else console.log(chalk.blueBright('No presets found'))
         presets.forEach((p) => {
             const s = []
-            if (p.type) s.push(terms[p.type])
-            if (p.babel) s.push('Babel')
-            if (p.ts) s.push('TypeScript')
-            if (p.router) s.push('Router')
-            if (p.state) s.push(terms[p.state])
-            if (p.cssProc) s.push(terms[p.cssProc])
-            if (p.cssFrame) s.push(terms[p.cssFrame])
-            if (p.linter) s.push(terms[p.linter])
-            if (p.unit) s.push(terms[p.unit])
+            if (p.type) {
+                if (
+                    types.frontend.types.find((t) => {
+                        return t === p.type
+                    })
+                )
+                    s.push(
+                        types.frontend.types.find((t) => {
+                            return t === p.type
+                        }).name
+                    )
+                else
+                    s.push(
+                        types.backend.types.find((t) => {
+                            return t === p.type
+                        }).name
+                    )
+            }
+
+            for (const f of types.frontend.types.find((t) => {
+                return t === type
+            })
+                ? types.frontend.features
+                : types.backend.features) {
+                if (
+                    f.value === 'babel' ||
+                    f.value === 'ts' ||
+                    f.value === 'router'
+                ) {
+                    if (p[f.value]) s.push(f.name)
+                } else if (f.value === 'state') {
+                    if (p[f.value])
+                        s.push(
+                            terms[f.value][type].find((t) => {
+                                return t.value === p[f.value]
+                            }).name
+                        )
+                } else {
+                    if (p[f.value])
+                        s.push(
+                            terms[f.value].find((t) => {
+                                return t.value === p[f.value]
+                            }).name
+                        )
+                }
+            }
 
             console.log(p.name + chalk.yellow(' [' + s.join(', ') + ']'))
         })

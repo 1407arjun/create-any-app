@@ -1,5 +1,5 @@
 import inquirer from 'inquirer'
-import units from '../../../data/features/units.js'
+import terms from '../../../data/terms.js'
 
 export default function unit() {
     const questions = [
@@ -7,7 +7,7 @@ export default function unit() {
             type: 'list',
             name: 'unit',
             message: 'Pick unit testing solution:',
-            choices: units.unit,
+            choices: terms.units,
             default: 0
         }
     ]

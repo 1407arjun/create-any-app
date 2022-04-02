@@ -1,21 +1,15 @@
+import cssFrames from './features/cssFrames.js'
+import cssProcs from './features/cssProcs'
+import linters from './features/linters.js'
+import states from './features/states'
+import units from './features/units.js'
+import versions from './features/versions.js'
+
 export default {
-    next: 'Next.js',
-    tw: 'TailwindCSS',
-    bs: 'Bootstrap',
-    ckui: 'Chakra UI',
-    mui: 'Material UI',
-    ant: 'Ant Design',
-    postcss: 'PostCSS',
-    sass: 'Sass/SCSS',
-    less: 'Less',
-    styl: 'Stylus',
-    esDefault: 'ESLint default config',
-    esAirbnb: 'ESLint + Airbnb config',
-    esStandard: 'ESLint + Standard config',
-    esPrettier: 'ESLint + Prettier',
-    reduxToolkit: 'Redux-Toolkit',
-    reactRedux: 'React-Redux',
-    redux: 'Redux',
-    jest: 'Jest',
-    mocha: 'Mocha + Chai'
+    cssFrames,
+    cssProcs,
+    linters,
+    states,
+    units,
+    versions
 }

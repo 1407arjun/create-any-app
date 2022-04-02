@@ -32,7 +32,24 @@ export default async function getSettings(options, type) {
                 choices: [
                     ...presets.map((c) => {
                         const s = []
-                        if (c.type) s.push(terms[c.type])
+                        if (c.type) {
+                            if (
+                                types.frontend.types.find((t) => {
+                                    return t === c.type
+                                })
+                            )
+                                s.push(
+                                    types.frontend.types.find((t) => {
+                                        return t === c.type
+                                    }).name
+                                )
+                            else
+                                s.push(
+                                    types.backend.types.find((t) => {
+                                        return t === c.type
+                                    }).name
+                                )
+                        }
 
                         for (const f of types.frontend.types.find((t) => {
                             return t === type
@@ -45,8 +62,20 @@ export default async function getSettings(options, type) {
                                 f.value === 'router'
                             ) {
                                 if (c[f.value]) s.push(f.name)
+                            } else if (f.value === 'state') {
+                                if (c[f.value])
+                                    s.push(
+                                        terms[f.value][type].find((t) => {
+                                            return t.value === c[f.value]
+                                        }).name
+                                    )
                             } else {
-                                if (c[f.value]) s.push(f.name)
+                                if (c[f.value])
+                                    s.push(
+                                        terms[f.value].find((t) => {
+                                            return t.value === c[f.value]
+                                        }).name
+                                    )
                             }
                         }
 
@@ -66,7 +95,7 @@ export default async function getSettings(options, type) {
         if (preset === 'manual') {
             /*settings = {
                 ...settings,
-                version: Number((await version()).version)
+                version: Number((await version(type)).version)
             }*/
             const options = await features(type)
             for (const opt of options.features) {
@@ -87,7 +116,10 @@ export default async function getSettings(options, type) {
                         settings = { ...settings, router: true }
                         break
                     case 'state':
-                        settings = { ...settings, state: (await state()).state }
+                        settings = {
+                            ...settings,
+                            state: (await state(type)).state
+                        }
                         break
                     case 'cssProc':
                         settings = {

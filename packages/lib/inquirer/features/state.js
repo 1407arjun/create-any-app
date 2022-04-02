@@ -1,13 +1,13 @@
 import inquirer from 'inquirer'
-import states from '../../../data/features/states.js'
+import terms from '../../../data/terms.js'
 
-export default function state() {
+export default function state(type) {
     const questions = [
         {
             type: 'list',
             name: 'state',
             message: 'Pick a state-management library:',
-            choices: states.next,
+            choices: terms.states[type],
             default: 0
         }
     ]

@@ -1,5 +1,5 @@
 import inquirer from 'inquirer'
-import cssFrames from '../../../data/features/cssFrames.js'
+import terms from '../../../data/terms.js'
 
 export default function cssFrame() {
     const questions = [
@@ -7,7 +7,7 @@ export default function cssFrame() {
             type: 'list',
             name: 'framework',
             message: 'Pick a CSS framework:',
-            choices: cssFrames.frameworks,
+            choices: terms.cssFrames,
             default: 0
         }
     ]

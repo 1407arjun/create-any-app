@@ -1,5 +1,5 @@
 import inquirer from 'inquirer'
-import linters from '../../../data/features/linters.js'
+import terms from '../../../data/terms.js'
 
 export default function linter() {
     const questions = [
@@ -7,7 +7,7 @@ export default function linter() {
             type: 'list',
             name: 'linter',
             message: 'Pick a linter/formatter config:',
-            choices: linters.eslint,
+            choices: terms.linters,
             default: 0
         }
     ]

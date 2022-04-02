@@ -120,6 +120,7 @@ Following are some of the guidelines that have to be followed when adding/modify
 -   Append the same name from the step above to the `switch` case in `main.js`.
 -   Create a new file by the name of the framework from above inside `lib/fs/types` and add all the file operations required for various options to it. (Refer `lib/fs/types/next.js` as an example)
 -   Use the functions provided under `lib/fs/util` to ease some of the file system operations.
+-   Add the respective dependencies, dev dependencies and scripts for the framework in `data/npm.js`
 -   Finally, follow the [guidelines](#contributing-to-the-templates) to modify the base templates to cater to all options.
 
 ### Contributing to configurations:
@@ -131,4 +132,4 @@ Following are some of the guidelines that have to be followed when adding/modify
 -   If you wish to add a new configuration, then create a file under `data/features` by the same name used in the value and add the corresponding data in it. Also export the same in `data/terms.js`.
 -   For new configurations, also create an `inquirer` file under `lib/inquirer/features` and modify the `lib/settings.js` and `lib/preset.js` files as required by adding the new cases for the configuration.
 -   Modify the respective affected file workflows in `lib/fs/types` as mentioned [here](#contributing-to-the-frameworks).
--   Finally, add the respective dependencies and dev dependencies for the configuration in `data/npm.js`.
+-   Finally, add the respective dependencies, dev dependencies and scripts (if any) for the configuration in `data/npm.js`.

@@ -10,7 +10,7 @@ program
     .description(
         'A CLI for rapid creation, configuration and development of JavaScript apps.'
     )
-    .version('0.1.0', '-v, ,--vers, --version', 'print create-any-app version')
+    .version('1.4.0', '-v, ,--vers, --version', 'print create-any-app version')
 
 program
     .command('create')

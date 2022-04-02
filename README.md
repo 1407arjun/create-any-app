@@ -114,7 +114,7 @@ Following are some of the guidelines that have to be followed when creating/modi
 
 Following are some of the guidelines that have to be followed when adding/modifying a framework configuration:
 
--   If you are wanting to add a new framework, add the respective name, value pair to the corresponding catergory in `data/types.js` and also create a program command for the same as in `bin/caa.js`.
+-   If you are wanting to add a new framework, add the respective name, value pair to the corresponding catergory in `data/types.js` and also create a program command for the same as in `bin/caa.js`. Add the file operation function of framework to the cases in `lib/fs/main.js`.
 -   Add the base versions of the templates (`default` or `typescript`) which are generated from the default templates of the framework itself and have the same project structure except the `tsconfig.json` and other type decalaration files.
 -   Add your framework as a seperate command to `bin/caa.js` and give it a type name to be used throughout the package.
 -   Append the same name from the step above to the `switch` case in `main.js`.

@@ -1,5 +1,5 @@
 import inquirer from 'inquirer'
-import cssFrames from '../../../data/cssFrames.js'
+import cssFrames from '../../../data/features/cssFrames.js'
 
 export default function cssFrame() {
     const questions = [

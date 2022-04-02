@@ -1,5 +1,5 @@
 import inquirer from 'inquirer'
-import versions from '../../../data/versions.js'
+import versions from '../../../data/features/versions.js'
 
 export default function version() {
     const questions = [

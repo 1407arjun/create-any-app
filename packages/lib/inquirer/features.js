@@ -1,27 +1,19 @@
 import inquirer from 'inquirer'
 import clear from 'clear'
+import types from '../../data/types.js'
 
-export default function features() {
+export default function features(type) {
     clear()
     const questions = [
         {
             type: 'checkbox',
             name: 'features',
             message: 'Check the features needed for your project:',
-            choices: [
-                //{ name: 'Babel', value: 'babel', checked: true },
-                { name: 'TypeScript', value: 'ts' },
-                { name: 'Router', value: 'router', checked: true },
-                { name: 'State Management', value: 'state' },
-                { name: 'CSS Pre-processors', value: 'cssProc' },
-                { name: 'CSS Frameworks', value: 'cssFrame' },
-                {
-                    name: 'Linter/Formatter',
-                    value: 'linter',
-                    checked: true
-                }
-                //{ name: 'Unit Testing', value: 'unit' }
-            ],
+            choices: types.frontend.types.find((t) => {
+                return t === type
+            })
+                ? types.frontend.features
+                : types.backend.features,
             loop: false
         }
     ]

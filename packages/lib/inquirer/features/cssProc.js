@@ -1,5 +1,5 @@
 import inquirer from 'inquirer'
-import cssProcs from '../../../data/cssProcs.js'
+import cssProcs from '../../../data/features/cssProcs.js'
 
 export default function cssProc() {
     const questions = [

@@ -1,5 +1,5 @@
 import inquirer from 'inquirer'
-import states from '../../../data/states.js'
+import states from '../../../data/features/states.js'
 
 export default function state() {
     const questions = [

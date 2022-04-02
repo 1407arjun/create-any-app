@@ -1,5 +1,5 @@
 import inquirer from 'inquirer'
-import linters from '../../../data/linters.js'
+import linters from '../../../data/features/linters.js'
 
 export default function linter() {
     const questions = [

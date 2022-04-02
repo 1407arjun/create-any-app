@@ -1,7 +1,7 @@
 import fs from 'fs-extra'
 import path from 'path'
 import shell from 'shelljs'
-import { npm, npmTypes, scripts } from '../npm.js'
+import { npm, npmTypes, scripts } from '../../../data/npm.js'
 import ejf from 'edit-json-file'
 import chalk from 'chalk'
 import remove from '../utils/remove.js'

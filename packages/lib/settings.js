@@ -11,6 +11,7 @@ import terms from '../data/terms.js'
 import inquirer from 'inquirer'
 import chalk from 'chalk'
 import config from './conf.js'
+import types from '../data/types.js'
 
 export default async function getSettings(options, type) {
     let settings = {}
@@ -22,6 +23,7 @@ export default async function getSettings(options, type) {
         const presets = config.get('presets').filter((c) => {
             return c.type === type
         })
+
         const questions = [
             {
                 type: 'list',
@@ -31,14 +33,22 @@ export default async function getSettings(options, type) {
                     ...presets.map((c) => {
                         const s = []
                         if (c.type) s.push(terms[c.type])
-                        if (c.babel) s.push('Babel')
-                        if (c.ts) s.push('TypeScript')
-                        if (c.router) s.push('Router')
-                        if (c.state) s.push(terms[c.state])
-                        if (c.cssProc) s.push(terms[c.cssProc])
-                        if (c.cssFrame) s.push(terms[c.cssFrame])
-                        if (c.linter) s.push(terms[c.linter])
-                        if (c.unit) s.push(terms[c.unit])
+
+                        for (const f of types.frontend.types.find((t) => {
+                            return t === type
+                        })
+                            ? types.frontend.features
+                            : types.backend.features) {
+                            if (
+                                f.value === 'babel' ||
+                                f.value === 'ts' ||
+                                f.value === 'router'
+                            ) {
+                                if (c[f.value]) s.push(f.name)
+                            } else {
+                                if (c[f.value]) s.push(f.name)
+                            }
+                        }
 
                         return c.name + chalk.yellow(' [' + s.join(', ') + ']')
                     }),
@@ -58,7 +68,7 @@ export default async function getSettings(options, type) {
                 ...settings,
                 version: Number((await version()).version)
             }*/
-            const options = await features()
+            const options = await features(type)
             for (const opt of options.features) {
                 switch (opt) {
                     case 'babel':

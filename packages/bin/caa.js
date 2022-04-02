@@ -42,4 +42,20 @@ program
         cli(name, options, 'next')
     })
 
+program
+    .command('express')
+    .description('create a new Express.js project')
+    .argument('<project-name>', 'name of the project')
+    .option(
+        '-ts, --typescript',
+        'create a new Express.js project in TypeScript'
+    )
+    .option(
+        '--no-git',
+        'create a new project without initializing a git repository'
+    )
+    .action((name, options) => {
+        cli(name, options, 'express')
+    })
+
 program.parse()
